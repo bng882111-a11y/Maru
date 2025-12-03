@@ -88,43 +88,7 @@ info.TextStrokeTransparency = 0.5
 info.Parent = main
 
 -- Dòng Discord
-local discord = Instance.new("TextLabel")
-discord.AnchorPoint = Vector2.new(0.5, 0)
-discord.Position = UDim2.new(0.5, 0, 0.86, 0)
-discord.Size = UDim2.new(0, 450, 0, 25)
-discord.BackgroundTransparency = 1
-discord.Text = "Status : https://discord.gg/s4sMmn7BrQ"
-discord.Font = Enum.Font.GothamSemibold
-discord.TextScaled = true
-discord.TextColor3 = Color3.fromRGB(255, 230, 90)
-discord.TextStrokeTransparency = 0.5
-discord.Parent = main
-
-task.spawn(function()
-	while task.wait(0.05) do
-		local tween = TweenService:Create(icon, TweenInfo.new(0.6, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, true), {
-			ImageTransparency = 0.1
-		})
-		tween:Play()
-		tween.Completed:Wait()
-	end
-end)
-
-
-local frames, lastTime, fps = 0, tick(), 0
-RunService.Heartbeat:Connect(function()
-	frames += 1
-	if tick() - lastTime >= 1 then
-		fps = frames
-		frames = 0
-		lastTime = tick()
-		local ping = math.floor(Stats.Network.ServerStatsItem["Data Ping"]:GetValue() or 0)
-		local players = #Players:GetPlayers()
-		info.Text = string.format("FPS: %d | Executor: Delta | Players: %d | Ping: %dms", fps, players, ping)
-	end
-end)
-      
-repeat
+running:repeat
     wait()
 until game:IsLoaded()
 if game.PlaceId == 2753915549 then
